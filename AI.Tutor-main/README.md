@@ -1,3 +1,12 @@
+---
+title: AI Tutor
+emoji: 📚
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+app_port: 7860
+---
 #  What is this?
 
 AI Tutor is a full-stack, production-deployed AI study assistant that transforms your personal notes into an interactive learning experience. Unlike generic chatbots, it's designed to **teach**, not just answer — using the Socratic method to guide students step-by-step through complex concepts.
