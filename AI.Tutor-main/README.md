@@ -109,7 +109,7 @@ Open your browser at `http://localhost:8000`
 
 ##  Screenshots
 
-> *Live at: [Your Deployment URL will go here]*
+> *Live at: https://huggingface.co/spaces/Roshni26/AI-Tutor*
 
 -  Login / Register Screen
 -  Socratic Tutor Chat with Markdown rendering
