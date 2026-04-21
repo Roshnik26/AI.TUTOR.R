@@ -109,7 +109,7 @@ Open your browser at `http://localhost:8000`
 
 ##  Screenshots
 
-> *Live at: https://huggingface.co/spaces/Prarabdha25/Ai-Tutor*
+> *Live at: [Your Deployment URL will go here]*
 
 -  Login / Register Screen
 -  Socratic Tutor Chat with Markdown rendering
@@ -120,9 +120,8 @@ Open your browser at `http://localhost:8000`
 
 ##  Author
 
-**Prarabdha Pandey**
-- Built as part of the Cuemath AI Builder Internship application
-- Deployed live on Hugging Face Spaces
+**Roshnik** (GitHub: [@Roshnik26](https://github.com/Roshnik26))
+- Deployed live on Hugging Face Spaces / Render
 
 ---
 
