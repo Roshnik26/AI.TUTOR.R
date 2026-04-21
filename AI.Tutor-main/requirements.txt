@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+sqlalchemy
+pydantic
+pydantic-settings
+loguru
+unstructured[all-docs]
+langchain-unstructured
+langchain-text-splitters
+sentence-transformers
+pymilvus
+mistralai
+langchain-community
+torch

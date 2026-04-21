@@ -1,0 +1,22 @@
+Milvus is an open-source vector database designed to store, index, and search large-scale vector data efficiently.
+It is commonly used in applications that require similarity search, such as recommendation systems, semantic search engines, and question answering systems.
+Milvus supports multiple index types like IVF_FLAT, IVF_PQ, and HNSW, which allow users to balance accuracy and performance.
+
+FastAPI is a modern, high-performance web framework for building APIs with Python.
+It is built on top of Starlette and Pydantic and is known for its speed, automatic OpenAPI documentation, and easy request validation.
+FastAPI is widely used for building backend services in machine learning and data-driven applications.
+
+MiniLM is a lightweight transformer-based model used for generating sentence embeddings.
+It produces dense vector representations of text, which are suitable for semantic similarity tasks.
+MiniLM models are commonly used in vector search pipelines because they provide a good balance between performance and computational efficiency.
+
+In this project, text documents are uploaded through a FastAPI endpoint.
+The text content is converted into embeddings using a MiniLM-based sentence transformer model.
+These embeddings are then stored in the Milvus vector database along with metadata such as filename and content type.
+
+When a user submits a query, the query text is also converted into an embedding.
+Milvus performs a similarity search between the query embedding and stored document embeddings.
+The most relevant documents are retrieved and passed as context to a large language model for generating a final response.
+
+This architecture is known as Retrieval-Augmented Generation (RAG).
+RAG combines information retrieval with generative models to produce accurate and context-aware answers.

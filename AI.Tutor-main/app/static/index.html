@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tutor Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Marked library for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <h2>AI Tutor</h2>
+        </div>
+        <nav>
+            <a href="#" class="nav-item active" data-target="chat-view">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Chat & Learn
+            </a>
+            <a href="#" class="nav-item" data-target="quiz-view">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Practice Quiz
+            </a>
+            <a href="#" class="nav-item" data-target="progress-view">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                My Progress
+            </a>
+            <a href="#" class="nav-item" id="upload-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                Upload Notes
+            </a>
+            <input type="file" id="file-input" style="display: none;" accept=".pdf,.txt,.docx">
+        </nav>
+        <div class="session-info" id="session-display">Session: Connecting...</div>
+    </div>
+
+    <main class="content">
+        <!-- Chat View -->
+        <div id="chat-view" class="view-section active">
+            <div class="header">
+                <h1>AI Tutor Chat</h1>
+                <p>Ask anything about your notes. I'm here to guide you step-by-step.</p>
+            </div>
+            <div class="chat-container">
+                <div class="chat-history" id="chat-history">
+                    <div class="message tutor">Hello! Upload some notes and ask me a question. Let's learn together!</div>
+                </div>
+                <div class="chat-inputBox">
+                    <textarea id="chat-input" placeholder="Type your question here... (e.g., 'Explain photosynthesis step-by-step')"></textarea>
+                    <button id="send-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quiz-view" class="view-section">
+            <div class="header">
+                <h1>Generate Practice Quiz</h1>
+                <p>Test your knowledge on a specific topic based on your notes.</p>
+            </div>
+            
+            <div class="quiz-generator" id="quiz-generator-container">
+                <input type="text" id="quiz-topic" placeholder="Enter topic (e.g., 'Newton Laws')">
+                <button class="primary-btn" id="generate-quiz-btn">Generate Quiz</button>
+            </div>
+
+            <div class="loading" id="quiz-loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generating questions...</p>
+            </div>
+
+            <div class="quiz-player" id="quiz-player" style="display: none;">
+                <div class="quiz-progress" id="quiz-progress">Question 1 of 3</div>
+                <h3 id="quiz-question">Question Text</h3>
+                <div class="options-container" id="quiz-options">
+                    <!-- Options injected here -->
+                </div>
+                <div class="explanation" id="quiz-explanation" style="display: none;"></div>
+                <button class="primary-btn mt-4" id="next-q-btn" style="display: none;">Next Question</button>
+            </div>
+
+            <div class="quiz-result" id="quiz-result" style="display: none;">
+                <h2>Quiz Complete!</h2>
+                <div class="score-circle">
+                    <span id="final-score">0/3</span>
+                </div>
+                <p id="quiz-summary">Great effort!</p>
+                <button class="primary-btn mt-4" id="back-to-gen-btn">Take Another Quiz</button>
+            </div>
+        </div>
+
+        <!-- Progress View -->
+        <div id="progress-view" class="view-section">
+            <div class="header">
+                <h1>Learning Progress</h1>
+                <p>Track your scores and identify areas to focus on.</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="card stat-card">
+                    <h3>Quizzes Taken</h3>
+                    <div class="stat-value" id="stat-quizzes">0</div>
+                </div>
+                <div class="card stat-card">
+                    <h3>Average Score</h3>
+                    <div class="stat-value" id="stat-avg">0%</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid mt-4">
+                <div class="card">
+                    <h3>Score History</h3>
+                    <div class="chart-container">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+                </div>
+                <div class="card bg-accent">
+                    <h3>⚠️ Weak Areas (Focus Needed)</h3>
+                    <ul class="weakness-list" id="weakness-list">
+                        <li>No data yet. Take some quizzes!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast">Message here</div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+Embeddings are numerical representations of text, images, or other data.
+They capture semantic meaning, allowing similar items to have similar vector representations.
+
+MiniLM is a lightweight transformer-based model optimized for generating sentence embeddings.
+It provides a good trade-off between performance and computational efficiency.
+
+Embedding models are used in semantic search, clustering, recommendation systems,
+and retrieval-augmented generation pipelines.
