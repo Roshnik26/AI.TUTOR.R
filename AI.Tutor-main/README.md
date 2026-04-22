@@ -83,7 +83,7 @@ FastAPI Backend (app/)
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/Prarabdha14/Ai-Tutor
+git clone https://github.com/Roshnik26/AI.TUTOR.R
 cd Ai-Tutor
 
 # 2. Create a virtual environment
